@@ -45,33 +45,33 @@
     <h2>Developed and built by Yeety</h2>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all dropdown buttons
             var dropdownButtons = document.querySelectorAll('.dropdown-button');
     
-            // Add click event to each dropdown button
             dropdownButtons.forEach(function(button) {
                 button.addEventListener('click', function(event) {
-                    // Toggle the visibility of the dropdown content
+                    // Close all other dropdowns
+                    closeDropdowns();
+    
+                    // Toggle the clicked dropdown
                     var dropdownContent = this.nextElementSibling;
                     dropdownContent.classList.toggle('show');
-                    
+    
                     // Prevent the click event from propagating to the document
                     event.stopPropagation();
                 });
             });
     
-            // Close the dropdown if clicking outside of it
-            window.addEventListener('click', function(event) {
-                // Get all dropdown contents
+            // Function to close all dropdowns
+            function closeDropdowns() {
                 var dropdowns = document.querySelectorAll('.dropdown-content');
-    
-                // Loop through all dropdown contents and remove the show class
                 dropdowns.forEach(function(dropdown) {
-                    if (dropdown.classList.contains('show')) {
-                        dropdown.classList.remove('show');
-                    }
+                    dropdown.classList.remove('show');
                 });
-            });
+            }
+    
+            // Close dropdowns on click or touch outside
+            window.addEventListener('click', closeDropdowns);
+            window.addEventListener('touchstart', closeDropdowns);
         });
     </script>
 </body>
