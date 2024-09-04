@@ -43,5 +43,25 @@
         </a>
     </div>
     <h2>Developed and built by Yeety</h2>
+    <script>
+        // Function to close the dropdown if clicked outside
+        window.onclick = function(event) {
+            // Get all dropdown contents
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            
+            // Loop through all dropdown contents
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                
+                // Check if the dropdown is open
+                if (!event.target.matches('.dropdown-button')) {
+                    // If clicked outside, close the dropdown
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
