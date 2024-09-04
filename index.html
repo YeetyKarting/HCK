@@ -44,24 +44,35 @@
     </div>
     <h2>Developed and built by Yeety</h2>
     <script>
-        // Function to close the dropdown if clicked outside
-        window.onclick = function(event) {
-            // Get all dropdown contents
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            
-            // Loop through all dropdown contents
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                
-                // Check if the dropdown is open
-                if (!event.target.matches('.dropdown-button')) {
-                    // If clicked outside, close the dropdown
-                    if (openDropdown.style.display === 'block') {
-                        openDropdown.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all dropdown buttons
+            var dropdownButtons = document.querySelectorAll('.dropdown-button');
+    
+            // Add click event to each dropdown button
+            dropdownButtons.forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    // Toggle the visibility of the dropdown content
+                    var dropdownContent = this.nextElementSibling;
+                    dropdownContent.classList.toggle('show');
+                    
+                    // Prevent the click event from propagating to the document
+                    event.stopPropagation();
+                });
+            });
+    
+            // Close the dropdown if clicking outside of it
+            window.addEventListener('click', function(event) {
+                // Get all dropdown contents
+                var dropdowns = document.querySelectorAll('.dropdown-content');
+    
+                // Loop through all dropdown contents and remove the show class
+                dropdowns.forEach(function(dropdown) {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
                     }
-                }
-            }
-        }
+                });
+            });
+        });
     </script>
 </body>
 </html>
